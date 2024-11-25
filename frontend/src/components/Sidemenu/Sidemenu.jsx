@@ -38,7 +38,7 @@ export function Sidemenu() {
                 Ajustes
             </Sidebar.Item>
             <div>
-            <Sidebar.Item onClick={ ()=>{clickMenu("logout")}} icon={MdLogout} color="danger">
+            <Sidebar.Item onClick={ ()=>{clickMenu("/logout")}} icon={MdLogout} color="danger">
                 Cerrar Sesion
             </Sidebar.Item>
             </div>
