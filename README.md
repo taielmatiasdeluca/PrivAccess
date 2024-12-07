@@ -5,16 +5,17 @@ Software de gestion de barrios cerrados / privados
 # Instalacion
 
 
+## Clonar repositorio
+```
+git clone https://github.com/taielamarino/PrivAccess.git
+```
+
+
 ## Backend
 Requerimientos:
 - NPM
 - NodeJS
 - MySQL
-
-### Clonar repositorio
-```
-git clone https://github.com/taielamarino/PrivAccess.git
-```
 
 ### Instalar dependencias
 ```
@@ -34,3 +35,13 @@ Para conectar el sistema con el servidor de base de datos, se deberan configurar
 ## Frontend
 Requerimientos:
 - NPM
+
+### Instalar dependencias
+```
+npm install
+```
+
+### Iniciar el servidor en modo de desarrollo
+```
+npm run dev
+```
