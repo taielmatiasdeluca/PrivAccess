@@ -2,6 +2,10 @@ const User = require("../models/userModel");
 
 const register = async (req, res) => {
   try {
+    if(!("email" in req.body) || !("password" in req.body)){
+      res.status(400).json({ message: "Datos mal cargados"})
+      return 
+    }
     const user = await User.register(req.body);
     res.status(200).json({ message: "User created" });
   } catch (error) {
