@@ -1,9 +1,10 @@
 
 import { Link, useNavigate } from "react-router-dom";
-
+import useApi from "../../hooks/useApi";
 
 export const Logout = () => {
-  console.log('Holaa')
   const navigate = useNavigate();
-  navigate('/');
+  const { logout } = useApi();
+  logout();
+  window.location.href = '/login';
 };
