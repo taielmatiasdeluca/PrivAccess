@@ -38,7 +38,7 @@ const User = {
       process.env.JWT_SECRET, // La clave secreta para firmar el token (en .env)
       { expiresIn: "1h" } // Expiración del token (por ejemplo, 1 hora)
     );
-    return token;
+    return { token, user: rows[0] };
   },
 
   register: async (userData) => {

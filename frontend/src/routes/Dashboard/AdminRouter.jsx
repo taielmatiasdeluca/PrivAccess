@@ -21,7 +21,7 @@ import { Configuration } from '../../pages/Panel/Configuration';
 
 
 
-export const DashboardRouter = () => {
+export const AdminRouter = () => {
     return (
         <div className='flex h-screen w-full'>
             <Sidemenu />
