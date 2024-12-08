@@ -1,5 +1,8 @@
 const express = require("express");
+
+//CONFIG
 const db = require("./config/db");
+const cors = require("./config/cors");
 
 const bodyParser = require("body-parser");
 
@@ -17,6 +20,7 @@ require("dotenv").config();
 
 const app = express();
 app.use(apiLimiter);
+app.use(cors);
 
 app.use(bodyParser.json());
 app.use("/api/owners", ownerRoutes);
