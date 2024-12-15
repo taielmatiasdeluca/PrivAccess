@@ -10,6 +10,14 @@ const User = {
     return rows;
   },
 
+  getIdFromHash: async (hash) => {
+    const [rows] = await db.query(
+      "SELECT id FROM users WHERE hash = ? limit 1",
+      [hash]
+    );
+    return rows[0].id;
+  },
+
   login: async (userData) => {
     const { email, password } = userData;
     // encrypt password with md5

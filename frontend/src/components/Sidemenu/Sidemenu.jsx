@@ -8,6 +8,7 @@ import { PiTextAlignCenterFill } from "react-icons/pi";
 import { IoIosSettings } from "react-icons/io";
 import { MdLogout } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { NeighbourhoodSelector } from "../NeighbourhoodSelector";
 export function Sidemenu() {
     const navigate = useNavigate();
 
@@ -19,6 +20,8 @@ export function Sidemenu() {
     <Sidebar aria-label="Default sidebar example">
       <Sidebar.Items>
         <Sidebar.ItemGroup>
+            <NeighbourhoodSelector />
+
             <Sidebar.Item onClick={()=>{clickMenu("/dashboard")}} icon={HiHome}>
                 Inicio
             </Sidebar.Item>
