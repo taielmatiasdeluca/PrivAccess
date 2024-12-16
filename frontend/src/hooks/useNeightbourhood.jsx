@@ -12,8 +12,9 @@ const useNeightbourhood = () => {
 
     const { api } = useApi();
 
-    const getNeightbourhoods = async () => {
-        if (neightbourhood.neightbourhoods.length > 0) {
+    const getNeightbourhoods = async (force=false) => {
+        console.log(force)
+        if (neightbourhood.neightbourhoods.length > 0 && !force) {
             setLoading(false);
             return;
         }
@@ -37,7 +38,8 @@ const useNeightbourhood = () => {
         setError(null);
         try {
             const response = await api.post("/neighbourhood", {name});
-            setNeightbourhoods(response.data);
+            console.log(response)
+            getNeightbourhoods(true);
             setLoading(false);
             return true;
         } catch (err) {
