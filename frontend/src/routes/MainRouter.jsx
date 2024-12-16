@@ -17,9 +17,7 @@ export const MainRouter = () => {
     // Return dashboard router based on user role
     const DashboardSelectedRouter = () => {
       // If user is not logged in, redirect to login page
-      console.log(user)
       if (!user) {
-        console.log('hola')
         window.location.href = '/login';
         return
       }

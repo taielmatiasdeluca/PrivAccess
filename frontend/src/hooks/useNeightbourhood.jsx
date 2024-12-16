@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import useApi from "./useApi";
-
+import { useMainContext } from "../context/MainContext";
 
 const useNeightbourhood = () => {
-
-    const [neightbourhoods, setNeightbourhoods] = useState([]);
+    const { setNeightbourhood, neightbourhood } = useMainContext();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -14,16 +13,22 @@ const useNeightbourhood = () => {
     const { api } = useApi();
 
     const getNeightbourhoods = async () => {
+        if (neightbourhood.neightbourhoods.length > 0) {
+            setLoading(false);
+            return;
+        }
         setLoading(true);
-        setError(null);
         try {
             const response = await api.get("/neighbourhood");
-            setNeightbourhoods(response.data);
-
+            setNeightbourhood({
+                selected: neightbourhood.selected || response.data[0]?.hash,
+                neightbourhoods: response.data,
+            });
+            
             setLoading(false);
         } catch (err) {
-            setLoading(false);
             setError(err.message);
+            setLoading(false);
         }
     }
 
@@ -44,9 +49,9 @@ const useNeightbourhood = () => {
     // Cargar socios al inicio
     useEffect(() => {
         getNeightbourhoods();
-    }, []);
+    }, [neightbourhood,setNeightbourhood]);
 
-    return { neightbourhoods, loading, error, getNeightbourhoods ,newNeightbourhood};
+    return { neightbourhood, setNeightbourhood,loading, error, getNeightbourhoods ,newNeightbourhood};
 };
 
 export default useNeightbourhood;

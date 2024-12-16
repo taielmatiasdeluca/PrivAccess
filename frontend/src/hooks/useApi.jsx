@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-
+import { useMainContext } from "../context/MainContext";
 
 
 const useApi = () => {

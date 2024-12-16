@@ -3,41 +3,53 @@ import { Label, Select } from "flowbite-react";
 import { useEffect, useState } from "react";
 import useNeightbourhood from "../hooks/useNeightbourhood";
 import { NeightbourhoodModal } from "../components/Modals/NewNeightbourhood";
+import { useMainContext } from "../context/MainContext";
 
 
 export const NeighbourhoodSelector = () =>{
-    const { neightbourhoods, loading } = useNeightbourhood();
-    const [selectedNeightbourhood, setSelectedNeightbourhood] = useState(null);
+
+    const { neightbourhood, setNeightbourhood } = useNeightbourhood();
+    const [selectedNeightbourhood, setSelectedNeightbourhood] = useState(neightbourhood.selected || "");
     const [showModal, setShowModal] = useState(false);
 
-     // Establece automáticamente el primer valor del select
     useEffect(() => {
-        if (neightbourhoods.length > 0) {
-            setSelectedNeightbourhood(neightbourhoods[0].hash);
+        if (neightbourhood.selected === false && neightbourhood.neightbourhoods.length > 0) {
+            const firstNeighbourhood = neightbourhood.neightbourhoods[0].hash;
+            setSelectedNeightbourhood(firstNeighbourhood);
+            setNeightbourhood({
+                selected: firstNeighbourhood,
+                neightbourhoods: neightbourhood.neightbourhoods
+            });
         }
-    }, [neightbourhoods]);
+    }, [neightbourhood.selected, neightbourhood.neightbourhoods]);
 
     const selectNeightbourhood = (e) => {
-        e.preventDefault();
-
-        if (e.target.value === 'new') {
+        const selectedValue = e.target.value;
+        setSelectedNeightbourhood(selectedValue);
+        if (selectedValue === 'new') {
             setShowModal(true);
-            
+        } else {
+            setNeightbourhood({
+                ...neightbourhood,
+                selected: selectedValue,
+            });
         }
-     
-    }
+    };
+
     return (
 
         <div className="max-w-md">
-            <NeightbourhoodModal showModal={showModal} setOpenModal={()=>{ setShowModal(!showModal)}} />
+            <NeightbourhoodModal 
+                showModal={showModal} 
+                setOpenModal={()=>{ setShowModal(!showModal)}}
+            />
             <Select 
             label="Selecciona tu barrio"
             value={selectedNeightbourhood}
             onChange={selectNeightbourhood}
-
             placeholder="Selecciona tu barrio"
             >
-                { loading ? <option>Cargando...</option> :  neightbourhoods?.map(neighbourhood => (
+                {neightbourhood.neightbourhoods?.map(neighbourhood => (
                     <option key={neighbourhood.hash} value={neighbourhood.hash}>
                         {neighbourhood.name}
                     </option>

@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
+import { useMainContext } from "../context/MainContext";
 
 const useOwners = (apiUrl) => {
   const [owners, setOwners] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+
   const fetchOwners = async () => {
     setLoading(true);
     setError(null);
     try {
+
       setSocios([
         {'nombre':'Juan Perez','apellido':'Perez','dni':'12345678Z','email':'juan@perez.com','telefono':'123456789','direccion':'Calle 123, Piso 123, Ciudad 123','fecha':'2023-01-01','tipo':'Propietario'},
         {'nombre':'Maria Perez','apellido':'Perez','dni':'12345678Z','email':'maria@perez.com','telefono':'123456789','direccion':'Calle 123, Piso 123, Ciudad 123','fecha':'2023-01-01','tipo':'Propietario'},
