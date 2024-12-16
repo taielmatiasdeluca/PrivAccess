@@ -1,14 +1,18 @@
 import { useRef } from "react";
 import { ModalTemplate } from "./ModalTemplate";
 import { Label,Checkbox,TextInput,Button } from "flowbite-react";
+import useNeighbourhood from "../../hooks/useNeightbourhood";
 
 export function NeightbourhoodModal({showModal,setOpenModal}) {
+    const { newNeightbourhood } = useNeighbourhood();
 
     const nameRef = useRef();
 
 
-    function newNeightbourhood() {
-        console.log(nameRef.current.value);
+    function createNeight() {
+        if(newNeightbourhood(nameRef.current.value)){
+            setOpenModal(false);
+        }
     }
 
 
@@ -23,7 +27,7 @@ export function NeightbourhoodModal({showModal,setOpenModal}) {
                     </div>
                     <TextInput id="name" placeholder="Barrio..." ref={nameRef} required />
                     </div>
-                    <Button onClick={()=>{newNeightbourhood();}}>Crear barrio</Button>
+                    <Button onClick={()=>{createNeight();}}>Crear barrio</Button>
                     
                 </div>
             </ModalTemplate>

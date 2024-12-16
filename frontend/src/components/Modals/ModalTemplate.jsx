@@ -10,7 +10,7 @@ export function ModalTemplate({
 }) {
   return (
     <>
-      <Modal show={showModal} size="md" popup onClose={setOpenModal}>
+      <Modal show={showModal} size="md"  popup onClose={setOpenModal}>
         <Modal.Header >
             <span className="font-bold text-lg">
                 {modalTittle}
