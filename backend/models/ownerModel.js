@@ -1,3 +1,5 @@
+const db = require("../config/db");
+
 const Owner = {
   getAll: async () => {
     const [rows] = await db.query("SELECT * FROM owners");

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-
+import { useMainContext } from "../context/MainContext";
 
 
 const useApi = () => {
@@ -16,6 +16,8 @@ const useApi = () => {
     },
   });
 
+
+
   const setAuthHeader = ({token,user}) => {
     setToken(token);
     setUser(user);
@@ -29,10 +31,13 @@ const useApi = () => {
     localStorage.removeItem("jwt");
     localStorage.removeItem("user"); 
 
+
   };
 
   // Función para verificar si el usuario está autenticado
   const isAuthenticated = () => !!token;
+
+
 
   return { user, token, setAuthHeader, logout, isAuthenticated, api };
 };
