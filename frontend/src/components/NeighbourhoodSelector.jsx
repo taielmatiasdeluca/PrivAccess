@@ -7,7 +7,6 @@ import { useMainContext } from "../context/MainContext";
 
 
 export const NeighbourhoodSelector = () =>{
-
     const { neightbourhood, setNeightbourhood } = useNeightbourhood();
     const [selectedNeightbourhood, setSelectedNeightbourhood] = useState(neightbourhood.selected || "");
     const [showModal, setShowModal] = useState(false);

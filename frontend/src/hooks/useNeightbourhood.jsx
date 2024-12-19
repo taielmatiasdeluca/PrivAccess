@@ -33,6 +33,20 @@ const useNeightbourhood = () => {
         }
     }
 
+    const deleteNeightbourhood = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await api.delete("/neighbourhood");
+            getNeightbourhoods(true);
+            setLoading(false);
+            return true;
+        } catch (err) {
+            setError(err.message);
+            setLoading(false);
+        }
+    };
+
     const newNeightbourhood = async (name) => {
         setLoading(true);
         setError(null);
@@ -53,7 +67,7 @@ const useNeightbourhood = () => {
         getNeightbourhoods();
     }, [neightbourhood,setNeightbourhood]);
 
-    return { neightbourhood, setNeightbourhood,loading, error, getNeightbourhoods ,newNeightbourhood};
+    return { neightbourhood, setNeightbourhood,loading, error, getNeightbourhoods ,newNeightbourhood,deleteNeightbourhood};
 };
 
 export default useNeightbourhood;
